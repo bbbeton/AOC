@@ -7,6 +7,6 @@ def read_commend(char):
     while not char[i].isdigit():
         commend += char[i]
         i += 1
-    return(commend)
+    return(commend.rstrip())
 
 print(read_commend(file[0]))
