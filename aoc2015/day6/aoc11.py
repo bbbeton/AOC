@@ -1,15 +1,15 @@
 with open('aoc11-12.txt') as file_input:
     file = file_input.read().splitlines()
 
-def read_commend(char):
+def read_commend(string):
     i = 0
     commend = ''
-    while not char[i].isdigit():
-        commend += char[i]
+    while not string[i].isdigit():
+        commend += string[i]
         i += 1
     return(commend.rstrip())
 
-print(read_commend(file[0]))
+#print(read_commend(file[0]))
 
 def create_table():
     lights = []
@@ -19,4 +19,13 @@ def create_table():
             lights[i].append(0)
     return lights
 
-print(create_table())
+def get_nums(string):
+    nums = []
+    words = string.split()
+    for element in words:
+        if element[0].isdigit():
+            nums.append(element.split(','))
+    return nums
+    
+
+print(get_nums(file[0]))
