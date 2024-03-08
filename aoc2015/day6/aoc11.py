@@ -10,3 +10,13 @@ def read_commend(char):
     return(commend.rstrip())
 
 print(read_commend(file[0]))
+
+def create_table():
+    lights = []
+    for i in range(0,999):
+        lights.append([])
+        for j in range(0,999):
+            lights[i].append(0)
+    return lights
+
+print(create_table())
