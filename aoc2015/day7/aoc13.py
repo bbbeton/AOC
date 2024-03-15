@@ -36,8 +36,9 @@ def bitwise_operation(input_list):
 
     return result
 
-def assign_further(temp_list, dictionary):
+def assign_further(temp_list, dictionary1):
     input_list = temp_list.copy()
+    dictionary = dictionary1.copy()
     for i in range(len(input_list)):
         
         if len(input_list[i][0]) == 2:
@@ -88,5 +89,7 @@ if __name__ == '__main__':
     while 'a' not in wires:
         new_wires = assign_further(instructions, wires)
         wires = new_wires
+    print(wires['a'])
+    
         
 

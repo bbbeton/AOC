@@ -1,5 +1,3 @@
-from aoc13 import old_wire
-
 with open('aoc13-14.txt') as file_input:
     file = file_input.read().splitlines()
 
@@ -89,7 +87,7 @@ if __name__ == '__main__':
     for i in range(len(file)):
         instructions.append(read_line(file[i]))
     
-    new_instructions = change_instructions(instructions, 16076)
+    new_instructions = change_instructions(instructions, 16706)
     #print(new_instructions)
     wires = assign(new_instructions)
     while 'a' not in wires:
