@@ -30,10 +30,7 @@ def bitwise_operation(input_list):
         result = int(input_list[0]) << int(input_list[2])
     else:
         raise ValueError("Invalid bitwise operation")
-
-    # Mask the result to keep only the least significant 32 bits
     result &= 0xFFFF
-
     return result
 
 def assign_further(input_list, dictionary):
@@ -70,11 +67,9 @@ def assign_further(input_list, dictionary):
             
             if input_list[i][0][0] in dictionary:
                 dictionary[input_list[i][1]] = dictionary[input_list[i][0][0]]
-                
-        
+
     return(dictionary)
     
-
 def change_instructions(instructions, value):
     for i in range(len(instructions)):
         if len(instructions[i][0]) == 1 and instructions[i][1] == 'b':
