@@ -9,12 +9,31 @@ def read_line(string):
 
 print(read_line(file[54]))
 
-def assign(list):
+def assign(input_list):
     dict = {}
-    for i in range(len(list)):
-        if len(list[i][0]) == 1 and list[i][0][0].isdigit():
-            dict[list[i][1]] = list[i][0][0]
+    for i in range(len(input_list)):
+        if len(input_list[i][0]) == 1 and input_list[i][0][0].isdigit():
+            dict[input_list[i][1]] = int(input_list[i][0][0])
     return dict
+
+#operations: NOT ~, AND &, OR |, RSHIFT >>, LSHIFT <<
+def bitwise_operation(input_list):
+    if 'NOT' in input_list:
+        return ~ int(input_list[1])
+    elif 'AND' in input_list:
+        return int(input_list[0]) & int(input_list[2])
+    elif 'OR' in input_list:
+        return int(input_list[0]) | int(input_list[2])
+    elif 'RSHIFT' in input_list:
+        return int(input_list[0]) >> int(input_list[2])
+    elif 'LSHIFT' in input_list:
+        return int(input_list[0]) << int(input_list[2])
+    else:
+        raise ValueError("Invalid bitwise operation")
+
+def assign_further(input_list, dict):
+    for i in range(len(input_list)):
+        
 
 if __name__ == '__main__':
     instructions = []
