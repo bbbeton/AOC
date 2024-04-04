@@ -14,7 +14,7 @@ def count_numbers(number):
 if __name__ == "__main__":
     i = 0
     number = "1113222113"
-    while i < 50:
+    while i < 40:
         number = count_numbers(number)
         i += 1
     print(len(number))
