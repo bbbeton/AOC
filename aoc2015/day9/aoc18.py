@@ -10,7 +10,7 @@ if __name__ == '__main__':
     for line in file:
         distances.append(read_distances(line))
     starting_cities = get_cities(distances)
-    print(starting_cities)
+    #print(starting_cities)
     possible_routes = permutations(starting_cities)
     for route in list(possible_routes):
         routes.append(get_length(route, distances))
