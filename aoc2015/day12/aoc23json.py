@@ -1,24 +1,25 @@
-#initial try
+import json
 
 with open('aoc23-24.txt') as file_input:
-    file = file_input.read().splitlines()
+    content = file_input.read()
 
-def get_sum(input):
-    number = ''
+def get_sum(data):
     numbers = []
-    for i in range(len(input)):
-        if input[i].isdigit():
-            if not input[i-1].isdigit() and i > 0:
-                start = i
-            number += input[i]
-            if not input[i+1].isdigit() or i == len(input) - 1:
-                if input[start-1] == '-':
-                    numbers.append(-int(number))
-                    number = ''
-                else:
-                    numbers.append(int(number))
-                    number = ''
+
+    def extract_numbers(obj):
+        if isinstance(obj, int):
+            numbers.append(obj)
+        elif isinstance(obj, list):
+            if "red" not in obj:
+                for item in obj:
+                    extract_numbers(item)
+        elif isinstance(obj, dict):
+            if "red" not in obj.values():
+                for value in obj.values():
+                    extract_numbers(value)
+
+    extract_numbers(json.loads(data))
     return sum(numbers)
 
 if __name__ == "__main__":
-    print(get_sum(file[0]))
+    print(get_sum(content))
