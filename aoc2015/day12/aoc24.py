@@ -10,9 +10,8 @@ def get_sum(data):
         if isinstance(obj, int):
             numbers.append(obj)
         elif isinstance(obj, list):
-            if "red" not in obj:
-                for item in obj:
-                    extract_numbers(item)
+            for item in obj:
+                extract_numbers(item)
         elif isinstance(obj, dict):
             if "red" not in obj.values():
                 for value in obj.values():
