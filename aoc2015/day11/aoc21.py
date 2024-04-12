@@ -15,7 +15,24 @@ def change_password(password):
             password[-i] = 'a'       
     return password
 
-while pswd[3] != 'q':
-    pswd = change_password(pswd)
-print(pswd)
+def check_straight(password):
+    for i in range(len(password) - 2):
+        if (ord(password[i+1]) == ord(password[i]) + 1) and (ord(password[i+2]) == ord(password[i]) + 2):
+            return True
+    return False
 
+def check_pairs(password):
+    counter = 0
+    used_letter = ''
+    for i in range(len(password)-1):
+        if password[i] == password[i+1] and counter == 0:
+            used_letter = password[i]
+            counter = 1
+        if password[i] == password[i+1] and counter == 1 and password[i] != used_letter:
+            return True
+    return False
+        
+if __name__ == "__main__":
+    while not check_pairs(pswd) or not check_straight(pswd):
+        pswd = change_password(pswd)
+    print(''.join(pswd))
