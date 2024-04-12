@@ -28,15 +28,15 @@ def get_length(route, distances):
     return total_distance
 
 
-#if __name__ == '__main__':
-distances = []
-routes = []
-for line in file:
-    distances.append(read_distances(line))
-starting_cities = get_cities(distances)
-print(starting_cities)
-possible_routes = permutations(starting_cities)
-for route in list(possible_routes):
-    routes.append(get_length(route, distances))
-print(min(routes))
-# print(routes)
+if __name__ == '__main__':
+    distances = []
+    routes = []
+    for line in file:
+        distances.append(read_distances(line))
+    starting_cities = get_cities(distances)
+    #print(starting_cities)
+    possible_routes = permutations(starting_cities)
+    for route in list(possible_routes):
+        routes.append(get_length(route, distances))
+    print(min(routes))
+    # print(routes)
