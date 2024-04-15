@@ -1,44 +1,53 @@
 from itertools import permutations
 
+with open('aoc25-26.txt') as file_input:
+    file = file_input.read().splitlines()
+
 def list_names(puzzle_input):
-    names = set()
-    for line in puzzle_input:
-        split_line = line.split()
-        names.add(split_line[0])
-    return list(names)
+    names = []
+    for i in range(len(puzzle_input)):
+        split_line = puzzle_input[i].split()
+        if split_line[0] not in names:
+            names.append(split_line[0])
+    names.append('Antonio')
+    return names
+
+def calculate_happiness(seating, happiness_chart):
+    happiness = 0
+    for i in range(len(seating)):
+        person_a = seating[i]
+        person_b = seating[i-1]
+        happiness += happiness_chart.get((person_a, person_b), 0)
+        happiness += happiness_chart.get((person_b, person_a), 0)
+    return happiness
 
 def get_happiness(puzzle_input):
     happiness_chart = {}
-    for line in puzzle_input:
-        split_line = line.split()
-        person_a = split_line[0]
-        person_b = split_line[-1].replace('.', '')
-        happiness = int(split_line[3])
-        if split_line[2] == "lose":
-            happiness *= -1
-        happiness_chart[(person_a, person_b)] = happiness
+    for i in range(len(puzzle_input)):
+        split_line = puzzle_input[i].split()
+        for element in split_line:
+            if 'gain' in split_line:
+                if element.isdigit():
+                    happiness_chart[(split_line[0] ,split_line[-1].replace('.',''))] = int(element)
+            else:
+                if element.isdigit():
+                    happiness_chart[(split_line[0] ,split_line[-1].replace('.',''))] = -int(element)
     return happiness_chart
 
-def calculate_total_happiness(seating, happiness_chart):
-    total_happiness = 0
-    n = len(seating)
-    for i in range(n):
-        person_a = seating[i]
-        person_b = seating[(i + 1) % n]
-        total_happiness += happiness_chart.get((person_a, person_b), 0)
-        total_happiness += happiness_chart.get((person_b, person_a), 0)
-    return total_happiness
+def add_yourself(happiness_chart, people):
+    name = 'Antonio'
+    for person in people:
+        if person != name:
+            happiness_chart[(name, person)] = 0
+            happiness_chart[(person, name)] = 0
+    return happiness_chart
+
 
 if __name__ == "__main__":
-    with open('aoc25-26.txt') as file_input:
-        file = file_input.read().splitlines()
-
     possible_seatings = permutations(list_names(file))
+    changes_in_happiness = []
     happiness_chart = get_happiness(file)
-    
-    max_happiness = 0
-    for seating in possible_seatings:
-        total_happiness = calculate_total_happiness(seating, happiness_chart)
-        max_happiness = max(max_happiness, total_happiness)
-    
-    print(max_happiness)
+    happiness_chart = add_yourself(happiness_chart, list_names(file))
+    for seating in list(possible_seatings):
+        changes_in_happiness.append(calculate_happiness(seating, happiness_chart))
+    print(max(changes_in_happiness))
