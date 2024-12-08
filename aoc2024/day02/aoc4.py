@@ -9,7 +9,7 @@ def isSafe(report):
 
 def isSafeRemoved(report):
     for i in range(len(report)):
-        modified_list = report[:i] + report[i+1:]
+        modified_list = report[:i] + report[i+1:] #przydatne zapamietac
         if checkRange(modified_list) and checkTrends(modified_list):
             return True
     return False
