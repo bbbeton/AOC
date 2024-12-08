@@ -5,7 +5,7 @@ with open("aoc5-6.txt") as file_input:
     file = file_input.read()
 
 def findMulInstructions(textFile):
-    pattern = "(?:mul\(\d+,\d+\))|(?:do\(\))|(?:don[']t\(\))"
+    pattern = "(?:mul\(\d+,\d+\))|(?:do\(\))|(?:don[']t\(\))"#important - regex very useful
     instructions = re.findall(pattern, textFile)
     return list(filter(None, instructions))
 
@@ -24,6 +24,6 @@ def sumMul(instructions):
 
 if __name__ == "__main__":
     instructions = findMulInstructions(file)
-    print(instructions)
+    #print(instructions)
     result = sumMul(instructions)
     print(result)
