@@ -53,6 +53,3 @@ def countVertical(textFile):
 if __name__ == "__main__":
     xmas = countVertical(file) + countDiagonal(file) + countLine(file)
     print(xmas)
-    print(countVertical(file))
-    print(countLine(file))
-    print(countDiagonal(file))
