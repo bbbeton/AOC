@@ -13,6 +13,7 @@ def getUpdates(textFile):
     i = 0
     while textFile[i]:
         i += 1
+    updates = []
 
 if __name__ == "__main__":
     print(getInstructions(file))
